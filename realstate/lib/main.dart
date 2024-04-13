@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
-import "package:realstate/features/WelcomePage/UI/onboardingScreen.dart";
+import "package:realstate/features/WelcomePage/UI/onboarding_screen.dart";
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
