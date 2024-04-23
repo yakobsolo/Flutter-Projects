@@ -31,6 +31,11 @@ migrate_working_dir/
 .pub/
 /build/
 
+.metadata
+analysis_options.yaml
+pubspec.lock
+
+
 # Symbolication related
 app.*.symbols
 
