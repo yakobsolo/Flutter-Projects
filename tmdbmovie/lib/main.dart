@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:tmdbmovie/features/UI/homepage.dart";
+import "package:tmdbmovie/features/UI/homepage/homepage.dart";
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async{
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        brightness: Brightness.light,
+        brightness: Brightness.dark,
         // primarySwatch: Colors.green
       ),
       home: Home(),
