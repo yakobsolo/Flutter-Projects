@@ -57,14 +57,46 @@ class _HomeState extends State<Home> {
         child: ListView(
           scrollDirection: Axis.vertical,
           children: [
-            ConvertText(text: "Trending Movies", size: 24, clr: Colors.white),
+            Row(
+              children: [
+                Container(
+                  width: 7,
+                  height: 20,
+                  color: Color.fromARGB(255, 255, 153, 0),
+                ),
+                SizedBox(width: 10,),
+                ConvertText(text: "Trending Movies", size: 24, clr: Colors.white),
+              ],
+            ),
             SizedBox(height: 20,),
             TrendingMoives(trendingmovies: trendingmovies,),
             // SizedBox(height: 5,),
-            ConvertText(text: "TopRated", size: 24, clr: Colors.white),
+            Row(
+              children: [
+                 Container(
+                  width: 7,
+                  height: 20,
+                  color: Color.fromARGB(255, 255, 153, 0),
+                ),
+                SizedBox(width: 10,),
+
+                ConvertText(text: "TopRated", size: 24, clr: Colors.white),
+              ],
+            ),
             SizedBox(height: 20,),
             TopRatedMovies(topratedmovies: topratedmovies,),
-            ConvertText(text: "Tv Shows", size: 24, clr: Colors.white),
+            Row(
+              children: [
+                 Container(
+                  width: 7,
+                  height: 20,
+                  color: Color.fromARGB(255, 255, 153, 0),
+                ),
+                SizedBox(width: 10,),
+                ConvertText(text: "Tv Shows", size: 24, clr: Colors.white),
+              ],
+            ),
+            
             SizedBox(height: 20,),
             TvShows(tvshows: tv,)
           ],

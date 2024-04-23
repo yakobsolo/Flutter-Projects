@@ -1,9 +1,21 @@
 import "package:flutter/material.dart";
+import "package:tmdbmovie/features/UI/detailspage/detailspage.dart";
 import "package:tmdbmovie/utils/converttotext.dart";
 
 class TrendingMoives extends StatelessWidget {
   final List trendingmovies;
   const TrendingMoives({super.key, required this.trendingmovies});
+
+
+  void _navigateToDetailsPage(BuildContext context, trendingmovie ) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => DetailsPage(
+          detailslist: trendingmovie,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +34,9 @@ class TrendingMoives extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                     _navigateToDetailsPage(context, trendingmovies[indx]);
+                    },
                     child: Ink(
                       height: height / 4,
                       width: width / 2.3,

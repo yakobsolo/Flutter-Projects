@@ -38,7 +38,7 @@ app.*.symbols
 app.*.map.json
 
 .env
-.env.local
+# .env.local
 
 # Android Studio will place build artifacts here
 /android/app/debug
