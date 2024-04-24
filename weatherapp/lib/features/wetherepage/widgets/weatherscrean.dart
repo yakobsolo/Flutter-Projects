@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:lottie/lottie.dart';
 import 'package:weatherapp/features/wetherepage/data/weatherdata.dart';
 import 'package:weatherapp/features/wetherepage/model/weathermodel.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class WeatherApp extends StatefulWidget {
   const WeatherApp({super.key});
@@ -11,7 +13,7 @@ class WeatherApp extends StatefulWidget {
 }
 
 class _WeatherAppState extends State<WeatherApp> {
-  final _weatherdata = WeatherData(apiKey: "d0eec2825917e966697fc9679502a142");
+  final _weatherdata = WeatherData(apiKey: dotenv.env['API_URL']?? "");
 
   Weather? _weather;
 
