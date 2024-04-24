@@ -52,7 +52,7 @@ class _WeatherAppState extends State<WeatherApp> {
         case 'rain':
         case 'drizzle':
         case 'shower rain':
-          return "assets/thunder.json";
+          return "assets/rainy.json";
 
         case 'thunderstorm':
           return "assets/thunder.json";
@@ -77,6 +77,7 @@ class _WeatherAppState extends State<WeatherApp> {
               SizedBox(height: 20,),
               Text("${_weather?.tempreture.round()} C"),
               Text(_weather?.mainCondition?? ""),
+              Text(_weather?.mainConditionDescription?? ""),
             ],
           ),
         ),
