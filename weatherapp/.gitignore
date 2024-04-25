@@ -32,6 +32,17 @@ migrate_working_dir/
 .pub/
 /build/
 
+/ios
+analysis_options.yaml
+.metadata
+pubspec.yaml
+/web
+/windows
+/test
+/linux
+/macos 
+loginauthentication.iml
+
 # Symbolication related
 app.*.symbols
 
@@ -43,6 +54,13 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
+/build
+
 # dotenv
 
 *.env
+.firebase
+.firebaserc
+.flutter-plugins
+.flutter-plugins-dependencies
+firebase.json

@@ -3,7 +3,6 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:lottie/lottie.dart';
 import 'package:weatherapp/features/wetherepage/data/weatherdata.dart';
 import 'package:weatherapp/features/wetherepage/model/weathermodel.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class WeatherApp extends StatefulWidget {
   const WeatherApp({super.key});
@@ -80,7 +79,7 @@ class _WeatherAppState extends State<WeatherApp> {
               SizedBox(
                 height: 20,
               ),
-              Text("${_weather?.tempreture.round()} C"),
+              Text("${_weather?.tempreture.round()} \u00b0C"),
               Text(_weather?.mainCondition ?? ""),
               Text(_weather?.mainConditionDescription ?? ""),
             ],
