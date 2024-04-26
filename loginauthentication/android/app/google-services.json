@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "470866763792",
+    "project_id": "authyaksignin",
+    "storage_bucket": "authyaksignin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:470866763792:android:50e02e962fb14a2426aa95",
+        "android_client_info": {
+          "package_name": "com.example.loginauthentication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzLZls1SCfiiZmLWPkBr87T_39ISydtcs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

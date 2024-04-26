@@ -1,23 +1,21 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:loginauthentication/features/loginPage/widgets/iconContainer.dart';
 import 'package:loginauthentication/features/loginPage/widgets/myButton.dart';
 import 'package:loginauthentication/features/loginPage/widgets/mytextfield.dart';
 
-class LoginPage extends StatelessWidget {
-  final Function() onTap;
-  const LoginPage({super.key, required this.onTap});
+class RegisterPage extends StatelessWidget {
+  final Function()? onTap;
+  const RegisterPage({super.key, required this.onTap});
 
-    
-    
   @override
   Widget build(BuildContext context) {
-
     final emailcontroller = TextEditingController();
 
     final passwordcontroller = TextEditingController();
 
+    final confirmcontroller = TextEditingController();
 
     customErrorDialog(msg) {
       return showDialog(
@@ -38,11 +36,12 @@ class LoginPage extends StatelessWidget {
       } else if (messege == "invalid-credential ") {
         customErrorDialog("Password Incorrect");
       } else {
+        print(messege+"what -----------------------");
         customErrorDialog('Email and Password Incorrect');
       }
     }
 
-    void signIn() async {
+    void signUp() async {
       showDialog(
           context: context,
           builder: (context) {
@@ -50,19 +49,23 @@ class LoginPage extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           });
+      Navigator.pop(context);
+      if (passwordcontroller.text == confirmcontroller.text) {
+        try {
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+              email: emailcontroller.text, password: passwordcontroller.text);
 
-      try {
-        await FirebaseAuth.instance.signInWithEmailAndPassword(
-            email: emailcontroller.text, password: passwordcontroller.text);
-
+          Navigator.pop(context);
+        } on FirebaseAuthException catch (e) {
+          Navigator.pop(context);
+          showErrorMessege(e.code);
+        }
+      } else {
         Navigator.pop(context);
-      } on FirebaseAuthException catch (e) {
-        Navigator.pop(context);
-        showErrorMessege(e.code);
+        customErrorDialog("Password don't match");
       }
     }
 
-    
     return SafeArea(
       child: Center(
         child: Column(
@@ -100,6 +103,13 @@ class LoginPage extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
+            MyTextField(
+                hinttext: "Confirm Password",
+                controller: confirmcontroller,
+                obsucure: true),
+            const SizedBox(
+              height: 10,
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40),
               child: Row(
@@ -119,11 +129,11 @@ class LoginPage extends StatelessWidget {
             ),
             GestureDetector(
                 onTap: () {
-                  signIn();
+                  signUp();
                 },
-                child: const MyButton(buttontext: "Sign In")),
+                child: const MyButton(buttontext: "Sign Up")),
             const SizedBox(
-              height: 50,
+              height: 20,
             ),
             const Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -153,7 +163,7 @@ class LoginPage extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 40,
+              height: 30,
             ),
             const Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -166,19 +176,16 @@ class LoginPage extends StatelessWidget {
               ],
             ),
             const SizedBox(
-              height: 50,
+              height: 40,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-              
-              Text(
-                "Not a member? ",
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              const Text(
+                "you have an account? ",
                 style: TextStyle(color: Colors.grey),
               ),
               GestureDetector(
                 onTap: onTap,
-                child: Text("Register Now",
+                child: const Text("Log In",
                     style: TextStyle(color: Color.fromARGB(255, 0, 187, 6))),
               ),
             ])
