@@ -1,18 +1,20 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class HomeScreen extends StatelessWidget {
-   HomeScreen({super.key});
+  HomeScreen({super.key});
   final user = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
     signOut() async {
+      await GoogleSignIn().signOut();
       await FirebaseAuth.instance.signOut();
     }
 
     return Scaffold(
-      backgroundColor: Colors.black,
+        backgroundColor: Colors.black,
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 140, 203, 255),
           actions: [
@@ -21,14 +23,14 @@ class HomeScreen extends StatelessWidget {
                   signOut();
                 },
                 icon: Icon(Icons.logout_outlined)),
-
-
-                SizedBox(width: 20,)
+            SizedBox(
+              width: 20,
+            )
           ],
         ),
-        body:  Center(
+        body: Center(
           child: Text(
-            "hi you have logged in as: \n ${user!.email}" ,
+            "hi you have logged in as: \n ${user!.email}",
             style: TextStyle(color: Colors.white, fontSize: 16),
           ),
         ));
