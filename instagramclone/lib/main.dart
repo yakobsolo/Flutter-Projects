@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instagramclone/features/homepage/UI/homepage.dart';
+import 'package:instagramclone/features/searchpage/UI/searchpage.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,9 +23,7 @@ class _MyAppState extends State<MyApp> {
 
     final List pages = [
       HomePage(),
-      Center(
-        child: Text("Search"),
-      ),
+      SearchPage(),
       Center(
         child: Text("reals"),
       ),

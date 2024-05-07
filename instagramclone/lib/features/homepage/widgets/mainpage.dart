@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:instagramclone/features/homepage/data/storydata.dart';
+import 'package:instagramclone/features/homepage/widgets/story.dart';
 
 class MainPage extends StatelessWidget {
   final int index;
-  
+
   const MainPage({super.key, required this.index});
 
   @override
   Widget build(BuildContext context) {
+   
     return Column(
       children: [
+        index ==0 ? Container(
+        height: 100,
+        child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: storydata.length,
+            itemBuilder: ((context, index) => Story(index: index))),
+      ): Container(),
 
         Padding(
           padding: const EdgeInsets.all(8.0),
@@ -21,91 +30,86 @@ class MainPage extends StatelessWidget {
                   Container(
                     height: 40,
                     width: 40,
-                    decoration: BoxDecoration( 
+                    decoration: BoxDecoration(
                       color: Colors.grey.shade300,
                       shape: BoxShape.circle,
                       // borderRadius: BorderRadius.circular(40),
-                            
                     ),
-                    
                   ),
-
-                  SizedBox(width: 5,),
-
+                  SizedBox(
+                    width: 5,
+                  ),
                   Text(storydata[index]),
                 ],
               ),
-
-
-          
               Icon(Icons.more_horiz)
-          
-          
-          ],),
-
+            ],
+          ),
         ),
-
         Container(
           height: 300,
           color: Colors.grey.shade300,
         ),
-        const SizedBox(height: 20,),
-
+        const SizedBox(
+          height: 20,
+        ),
         const Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(children: [
-                 Icon(Icons.favorite),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                child: Icon(Icons.chat),
+              Row(
+                children: [
+                  Icon(Icons.favorite),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                    child: Icon(Icons.chat),
+                  ),
+                  Icon(Icons.share),
+                ],
               ),
-              Icon(Icons.share),
-              ],),
-             
               Icon(Icons.bookmark),
-              
-          
             ],
-          
-          
           ),
-
-
         ),
-        const SizedBox(height: 20,),
+        const SizedBox(
+          height: 20,
+        ),
         const Padding(
-          padding:  EdgeInsets.symmetric(horizontal: 20.0),
-          child:  Column(
+          padding: EdgeInsets.symmetric(horizontal: 20.0),
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               Text.rich( 
+              Text.rich(
                 // style: TextStyle(fontWeight: FontWeight.bold),
-              TextSpan(text: "Liked by " ,
-              children: [
-                  TextSpan(text: "yakob ", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
+                TextSpan(text: "Liked by ", children: [
+                  TextSpan(
+                      text: "yakob ",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.black)),
                   TextSpan(text: "ans ", style: TextStyle(color: Colors.black)),
-                  TextSpan(text: "others ", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black))
-              
-
-              ]),
+                  TextSpan(
+                      text: "others ",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.black))
+                ]),
               ),
-              
-              SizedBox(height: 5,),
-
-              Text.rich( 
+              SizedBox(
+                height: 5,
+              ),
+              Text.rich(
                 style: TextStyle(fontWeight: FontWeight.bold),
-              TextSpan(text: "Mosaic Hotel" ,
-              children: [
-                  TextSpan(text: " what i a day the hotel is great, specially i recommend the spa, after you hit the gym", style: TextStyle(fontWeight: FontWeight.normal, color: Colors.black))
-              
-              
-              ]),
+                TextSpan(text: "Mosaic Hotel", children: [
+                  TextSpan(
+                      text:
+                          " what i a day the hotel is great, specially i recommend the spa, after you hit the gym",
+                      style: TextStyle(
+                          fontWeight: FontWeight.normal, color: Colors.black))
+                ]),
               ),
-
-              SizedBox(height: 15,),
+              SizedBox(
+                height: 15,
+              ),
             ],
           ),
         )

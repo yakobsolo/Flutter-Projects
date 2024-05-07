@@ -24,15 +24,7 @@ class HomePage extends StatelessWidget {
       child: Column(
         // scrollDirection: Axis.vertical,
         children: [
-          Container(
-          height: 100,
-        
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: storydata.length,
-            itemBuilder: ((context, index) => Story(index:index))),
-        ),
-
+          
         Expanded(
           child: ListView.builder(
           itemCount: 4,
