@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instagramclone/features/homepage/UI/homepage.dart';
+import 'package:instagramclone/features/profilepage/UI/profilepage.dart';
 import 'package:instagramclone/features/searchpage/UI/searchpage.dart';
 
 void main() {
@@ -28,11 +29,10 @@ class _MyAppState extends State<MyApp> {
         child: Text("reals"),
       ),
       Center(
-        child: Text("shop"),
+        child: Text("chat"),
       ),
-      Center(
-        child: Text("profile"),
-      ),
+     ProfilePage(),
+      
     ];
   @override
   Widget build(BuildContext context) {
@@ -55,7 +55,7 @@ class _MyAppState extends State<MyApp> {
             BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
             BottomNavigationBarItem(
                 icon: Icon(Icons.video_call), label: "reals"),
-            BottomNavigationBarItem(icon: Icon(Icons.shop), label: "shop"),
+            BottomNavigationBarItem(icon: Icon(Icons.messenger), label: "chat"),
             BottomNavigationBarItem(icon: Icon(Icons.person), label: "account"),
           ],
         ),

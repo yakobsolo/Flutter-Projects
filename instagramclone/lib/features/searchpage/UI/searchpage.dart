@@ -14,9 +14,10 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+        
           
           title : Padding(
-          padding: const EdgeInsets.only(left: 20.0, right: 20, top: 40),
+          padding: const EdgeInsets.only(left: 20.0, right: 20, ),
           child: Container(
             height: 50,
             decoration: BoxDecoration(
@@ -43,11 +44,12 @@ class _SearchPageState extends State<SearchPage> {
         ),
         ),
         body: GridView.builder(
+            // padding: EdgeInsets.only(top: 20),
             gridDelegate:
                 SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
             itemCount: 40,
             itemBuilder: ((context, index) => Padding(
-                  padding: const EdgeInsets.all(4.0),
+                  padding: const EdgeInsets.all(2.0),
                   child: Container(
                     height: 100,
                     width: 100,
