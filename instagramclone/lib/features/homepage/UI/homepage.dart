@@ -15,9 +15,9 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Instagram"),
         
-        actions: [Icon(Icons.add),SizedBox(width: 20,), Icon(Icons.favorite),SizedBox(width: 15,),],
+        actions: const [Icon(Icons.favorite_outline),SizedBox(width: 20,), Icon(Icons.messenger_outline),SizedBox(width: 15,),],
       ),
-      body: Padding(padding: EdgeInsets.symmetric(vertical: 20,
+      body: Padding(padding: const  EdgeInsets.symmetric(vertical: 20,
           
       ),
       

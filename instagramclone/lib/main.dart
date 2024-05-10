@@ -26,10 +26,10 @@ class _MyAppState extends State<MyApp> {
       HomePage(),
       SearchPage(),
       Center(
-        child: Text("reals"),
+        child: Text("add"),
       ),
       Center(
-        child: Text("chat"),
+        child: Text("reals"),
       ),
      ProfilePage(),
       
@@ -54,8 +54,8 @@ class _MyAppState extends State<MyApp> {
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
             BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
             BottomNavigationBarItem(
-                icon: Icon(Icons.video_call), label: "reals"),
-            BottomNavigationBarItem(icon: Icon(Icons.messenger), label: "chat"),
+                icon: Icon(Icons.add_box_outlined), label: "add"),
+            BottomNavigationBarItem(icon: Icon(Icons.video_call), label: "reals"),
             BottomNavigationBarItem(icon: Icon(Icons.person), label: "account"),
           ],
         ),
