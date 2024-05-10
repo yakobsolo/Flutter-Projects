@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:instagramclone/features/homepage/UI/homepage.dart';
 import 'package:instagramclone/features/profilepage/UI/profilepage.dart';
+import 'package:instagramclone/features/realpage/UI/realpage.dart';
 import 'package:instagramclone/features/searchpage/UI/searchpage.dart';
 
 void main() {
@@ -22,15 +23,13 @@ class _MyAppState extends State<MyApp> {
       });
     }
 
-    final List pages = [
+    final List pages = const [
       HomePage(),
       SearchPage(),
       Center(
         child: Text("add"),
       ),
-      Center(
-        child: Text("reals"),
-      ),
+     RealPage(),
      ProfilePage(),
       
     ];
@@ -50,7 +49,7 @@ class _MyAppState extends State<MyApp> {
           currentIndex: _selectedindex,
           onTap: _onTap,
           type: BottomNavigationBarType.fixed,
-          items: [
+          items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
             BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
             BottomNavigationBarItem(
