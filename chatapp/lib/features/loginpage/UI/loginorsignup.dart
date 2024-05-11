@@ -1,5 +1,5 @@
 import 'package:chatapp/features/loginpage/UI/loginScreen.dart';
-import 'package:chatapp/features/loginpage/UI/registerScreen.dart';
+import 'package:chatapp/features/signuppage/UI/registerScreen.dart';
 import 'package:flutter/material.dart';
 
 class LoginorSignUp extends StatefulWidget {

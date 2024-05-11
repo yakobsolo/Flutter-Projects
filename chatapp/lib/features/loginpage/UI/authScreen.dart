@@ -1,4 +1,4 @@
-import 'package:chatapp/features/loginpage/UI/homeScreen.dart';
+import 'package:chatapp/features/homepage/UI/homeScreen.dart';
 import 'package:chatapp/features/loginpage/UI/loginorsignup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

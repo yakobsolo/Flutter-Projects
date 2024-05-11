@@ -2,13 +2,16 @@ import 'package:chatapp/features/loginpage/widgets/iconContainer.dart';
 import 'package:chatapp/features/loginpage/widgets/myButton.dart';
 import 'package:chatapp/features/loginpage/widgets/mytextfield.dart';
 import 'package:chatapp/features/services/auth_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatelessWidget {
   final Function()? onTap;
-  const RegisterPage({super.key, required this.onTap});
+  RegisterPage({super.key, required this.onTap});
+
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +27,8 @@ class RegisterPage extends StatelessWidget {
           builder: (context) {
             return AlertDialog(
               title: Center(child: Text(msg)),
-              titleTextStyle:
-                   TextStyle(fontSize: 18, color: Theme.of(context).colorScheme.secondary),
+              titleTextStyle: TextStyle(
+                  fontSize: 18, color: Theme.of(context).colorScheme.secondary),
               backgroundColor: const Color.fromARGB(255, 94, 0, 202),
             );
           });
@@ -37,7 +40,7 @@ class RegisterPage extends StatelessWidget {
       } else if (messege == "invalid-credential ") {
         customErrorDialog("Password Incorrect");
       } else {
-        print(messege+"what -----------------------");
+        print(messege + "what -----------------------");
         customErrorDialog('Email and Password Incorrect');
       }
     }
@@ -52,10 +55,13 @@ class RegisterPage extends StatelessWidget {
           });
       if (passwordcontroller.text == confirmcontroller.text) {
         try {
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
               email: emailcontroller.text, password: passwordcontroller.text);
 
-            
+          _firestore.collection('Users').doc(userCredential.user!.uid).set({
+            "uid": userCredential.user!.uid,
+            'email': emailcontroller.text,
+          });
 
           Navigator.pop(context);
         } on FirebaseAuthException catch (e) {
@@ -76,7 +82,7 @@ class RegisterPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-               Icon(
+              Icon(
                 Icons.lock,
                 size: 100,
                 color: Theme.of(context).colorScheme.primary,
@@ -84,7 +90,7 @@ class RegisterPage extends StatelessWidget {
               const SizedBox(
                 height: 50,
               ),
-               Text(
+              Text(
                 "Welcome back you've been missed?",
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.secondary,
@@ -122,9 +128,10 @@ class RegisterPage extends StatelessWidget {
                   children: [
                     GestureDetector(
                         onTap: () {},
-                        child:  Text(
+                        child: Text(
                           "Forgot Password?",
-                          style: TextStyle(color: Theme.of(context).colorScheme.secondary),
+                          style: TextStyle(
+                              color: Theme.of(context).colorScheme.secondary),
                         ))
                   ],
                 ),
@@ -140,7 +147,7 @@ class RegisterPage extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-               Padding(
+              Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 40),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -170,28 +177,36 @@ class RegisterPage extends StatelessWidget {
               const SizedBox(
                 height: 30,
               ),
-               Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  IconsContainer(iconpath: "assets/Icons/google.png", onTap: () => AuthService().signInwithGoogle(),),
+                  IconsContainer(
+                    iconpath: "assets/Icons/google.png",
+                    onTap: () => AuthService().signInwithGoogle(),
+                  ),
                   const SizedBox(
                     width: 10,
                   ),
-                  IconsContainer(iconpath: "assets/Icons/beta.png", onTap: () {},),
+                  IconsContainer(
+                    iconpath: "assets/Icons/beta.png",
+                    onTap: () {},
+                  ),
                 ],
               ),
               const SizedBox(
                 height: 40,
               ),
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                 Text(
+                Text(
                   "you have an account? ",
-                  style: TextStyle(color: Theme.of(context).colorScheme.secondary),
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.secondary),
                 ),
                 GestureDetector(
                   onTap: onTap,
-                  child:  Text("Log In",
-                      style: TextStyle(color: Theme.of(context).colorScheme.tertiary)),
+                  child: Text("Log In",
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.tertiary)),
                 ),
               ])
             ],

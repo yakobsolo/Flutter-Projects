@@ -1,24 +1,22 @@
-
 import 'package:chatapp/features/loginpage/widgets/iconContainer.dart';
 import 'package:chatapp/features/loginpage/widgets/myButton.dart';
 import 'package:chatapp/features/loginpage/widgets/mytextfield.dart';
 import 'package:chatapp/features/services/auth_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
   final Function() onTap;
-  const LoginPage({super.key, required this.onTap});
+   LoginPage({super.key, required this.onTap});
 
-    
-    
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
   @override
   Widget build(BuildContext context) {
-
     final emailcontroller = TextEditingController();
 
     final passwordcontroller = TextEditingController();
-
 
     customErrorDialog(msg) {
       return showDialog(
@@ -26,8 +24,8 @@ class LoginPage extends StatelessWidget {
           builder: (context) {
             return AlertDialog(
               title: Center(child: Text(msg)),
-              titleTextStyle:
-                   TextStyle(fontSize: 18, color: Theme.of(context).colorScheme.secondary),
+              titleTextStyle: TextStyle(
+                  fontSize: 18, color: Theme.of(context).colorScheme.secondary),
               backgroundColor: const Color.fromARGB(255, 94, 0, 202),
             );
           });
@@ -53,8 +51,14 @@ class LoginPage extends StatelessWidget {
           });
 
       try {
-        await FirebaseAuth.instance.signInWithEmailAndPassword(
-            email: emailcontroller.text, password: passwordcontroller.text);
+        UserCredential userCredential = await FirebaseAuth.instance
+            .signInWithEmailAndPassword(
+                email: emailcontroller.text, password: passwordcontroller.text);
+
+        _firestore.collection('Users').doc(userCredential.user!.uid).set({
+          "uid": userCredential.user!.uid,
+          'email': emailcontroller.text,
+        });
 
         Navigator.pop(context);
       } on FirebaseAuthException catch (e) {
@@ -63,7 +67,6 @@ class LoginPage extends StatelessWidget {
       }
     }
 
-    
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Theme.of(context).colorScheme.background,
@@ -72,15 +75,15 @@ class LoginPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-               Icon(
+              Icon(
                 Icons.lock,
                 size: 100,
                 color: Theme.of(context).colorScheme.primary,
               ),
-               const SizedBox(
+              const SizedBox(
                 height: 50,
               ),
-               Text(
+              Text(
                 "Welcome back you've been missed?",
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.secondary,
@@ -111,9 +114,10 @@ class LoginPage extends StatelessWidget {
                   children: [
                     GestureDetector(
                         onTap: () {},
-                        child:  Text(
+                        child: Text(
                           "Forgot Password?",
-                          style: TextStyle(color: Theme.of(context).colorScheme.secondary),
+                          style: TextStyle(
+                              color: Theme.of(context).colorScheme.secondary),
                         ))
                   ],
                 ),
@@ -129,7 +133,7 @@ class LoginPage extends StatelessWidget {
               const SizedBox(
                 height: 50,
               ),
-               Padding(
+              Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 40),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -144,7 +148,8 @@ class LoginPage extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 5.0),
                       child: Text(
                         "Or okay rontinue with",
-                        style: TextStyle(color: Theme.of(context).colorScheme.secondary),
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.secondary),
                       ),
                     ),
                     Expanded(
@@ -159,31 +164,36 @@ class LoginPage extends StatelessWidget {
               const SizedBox(
                 height: 40,
               ),
-               Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  IconsContainer(iconpath: "assets/Icons/google.png", onTap: () => AuthService().signInwithGoogle(),),
+                  IconsContainer(
+                    iconpath: "assets/Icons/google.png",
+                    onTap: () => AuthService().signInwithGoogle(),
+                  ),
                   const SizedBox(
                     width: 10,
                   ),
-                  IconsContainer(iconpath: "assets/Icons/beta.png", onTap: () {},),
+                  IconsContainer(
+                    iconpath: "assets/Icons/beta.png",
+                    onTap: () {},
+                  ),
                 ],
               ),
               const SizedBox(
                 height: 50,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 Text(
                   "Not a member? ",
-                  style: TextStyle(color: Theme.of(context).colorScheme.secondary),
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.secondary),
                 ),
                 GestureDetector(
                   onTap: onTap,
                   child: Text("Register Now",
-                      style: TextStyle(color: Theme.of(context).colorScheme.tertiary)),
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.tertiary)),
                 ),
               ])
             ],
