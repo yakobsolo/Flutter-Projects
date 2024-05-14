@@ -1,11 +1,11 @@
-import 'package:chatapp/features/homepage/UI/chatScreen.dart';
-import 'package:chatapp/features/homepage/UI/usertile.dart';
+import 'package:chatapp/features/chatpage/UI/chatpage.dart';
+import 'package:chatapp/features/homepage/widgets/usertile.dart';
 import 'package:chatapp/features/homepage/widgets/drawerpage.dart';
 import 'package:chatapp/features/services/auth_service.dart';
 import 'package:chatapp/features/services/chat/chat_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -18,11 +18,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    signOut() async {
-      await GoogleSignIn().signOut();
-      await FirebaseAuth.instance.signOut();
-    }
-
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       drawer: DrawerPage(),
@@ -69,11 +64,13 @@ class HomeScreen extends StatelessWidget {
               context,
               MaterialPageRoute(
                   builder: (context) =>
-                      ChatPage(receiverEmail: userData["email"])));
+                      ChatPage(receiverEmail: userData["email"], receiverID: userData['uid'],)));
         },
       );
     } else {
       return Container();
     }
   }
+
+ 
 }

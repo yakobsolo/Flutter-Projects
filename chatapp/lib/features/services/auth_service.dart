@@ -24,6 +24,8 @@ class AuthService {
 
     UserCredential userCredential =
         await FirebaseAuth.instance.signInWithCredential(credential);
+
+        
     _firestore.collection('Users').doc(userCredential.user!.uid).set({
       "uid": userCredential.user!.uid,
       'email': userCredential.user!.email,

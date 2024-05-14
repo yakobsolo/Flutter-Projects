@@ -15,15 +15,17 @@ class UserTile extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
         decoration: BoxDecoration( 
-          color: Colors.grey.shade300
+          color: Color.fromARGB(255, 211, 211, 211),
+          borderRadius: BorderRadius.circular(10)
 
         ),
         margin: EdgeInsets.only(left: 20, top: 10, right: 20),
 
         child:  Row( children: [
 
-          Icon(Icons.person),
-          Text(text),
+          Icon(Icons.person, color: const Color.fromARGB(255, 66, 66, 66),),
+          SizedBox(width: 5,),
+          Text(text, style: TextStyle(color: const Color.fromARGB(255, 77, 77, 77)),),
 
         ],),
       ),
