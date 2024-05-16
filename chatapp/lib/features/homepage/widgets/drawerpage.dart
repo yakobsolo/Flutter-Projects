@@ -1,14 +1,20 @@
+import 'package:chatapp/features/settingspage/UI/settingspage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class DrawerPage extends StatelessWidget {
+class DrawerPage extends StatefulWidget {
   const DrawerPage({super.key});
 
+  @override
+  State<DrawerPage> createState() => _DrawerPageState();
+}
+
+class _DrawerPageState extends State<DrawerPage> {
   signOut() async {
-      await GoogleSignIn().signOut();
-      await FirebaseAuth.instance.signOut();
-    }
+    await GoogleSignIn().signOut();
+    await FirebaseAuth.instance.signOut();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +51,13 @@ class DrawerPage extends StatelessWidget {
                   horizontal: 15.0,
                 ),
                 child: ListTile(
-                  onTap: () => Navigator.pop(context),
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SettingsPage()));
+                  },
                   title: Text(
                     "S E T T I N G S",
                     style: TextStyle(

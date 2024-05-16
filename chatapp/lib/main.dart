@@ -1,7 +1,9 @@
+
 import 'package:chatapp/features/loginpage/UI/authScreen.dart';
-import 'package:chatapp/theme/theme.dart';
+import 'package:chatapp/theme/themdatanotifier.dart';
 import "package:flutter/material.dart";
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -9,7 +11,11 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(create: (context) => ThemeProvider(),
+    child: MyApp(),
+    )
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -19,8 +25,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: lightMode,
-      darkTheme: darkMode,
+      theme: Provider.of<ThemeProvider>(context).themedata,
+      // darkTheme: darkMode,
       home: Scaffold(
         
         resizeToAvoidBottomInset: false,
