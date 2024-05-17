@@ -1,16 +1,16 @@
-# chatapp
+# Minimal Chatapp
 
-A new Flutter project.
+## Features it has:
 
-## Getting Started
+-  login page
+-  register page
+-  login/register with google
+-  drawer page
+-  setting page
+    -  dark mode
+-  chat page
+-  chat rooms
 
-This project is a starting point for a Flutter application.
+  # Demo video
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+  https://github.com/yakobsolo/Flutter-Projects/assets/99880602/5833e239-cd00-4980-92cb-ab53707083ab
